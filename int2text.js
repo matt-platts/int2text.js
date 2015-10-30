@@ -1,5 +1,7 @@
-// int2text.js
-// by Matt Platts (mattplatts@gmail.com)
+/* 
+ * int2text.js
+ * Turn a numeric input into it's textual equivilent
+*/
 
 window.intToText = function () {
 
@@ -8,6 +10,7 @@ window.intToText = function () {
 	var tens = Array("","ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety");
 	
 	var bigUnits = Array("thousand","","","million","","","billion","","","trillion","","","quadrillion","","","quintillion","","","sextillion","","","septillion","","","octillion","","","nonillion","","","decillion","","","undecillion","","","duodecillion","","","tredecillion","","","quattuordecillion","","","quindecillion","","","sexdecillion","","","septendecillion","","","octodecillion","","","novemdecillion","","","vigintillion","","","unvigintillion","","","dovigintillion","","","trevigintillion","","","quattuorvigintillion","","","quinvigintillion","","","sexvigintillion","","","septenvigintillion","","","octovigintillion","","","novemvigintillion","","","trigintillion","","","untrigintillion","","","dotrigintillion"); 
+	// below array to replace bigUnits below - need to fix the code to stop skipping blank entries and index properly
 	var bigUnits2 = Array("thousand","million","billion","trillion","quadrillion","quintillion","sextillion","septillion","octillion","nonillion","decillion","undecillion","duodecillion","tredecillion","quattuordecillion","quindecillion","sexdecillion","septendecillion","octodecillion","novemdecillion","vigintillion","unvigintillion","dovigintillion","trevigintillion","quattuorvigintillion","quinvigintillion","sexvigintillion","septenvigintillion","octovigintillion","novemvigintillion","trigintillion","untrigintillion","dotrigintillion"); 
 
 	var outputText = '';
@@ -46,13 +49,14 @@ window.intToText = function () {
 			{ printAnd=1;}
 
 			//outputText += "[" + i + "," + parseInt(len) + "," + parseInt(parseInt(len)-4) + " - " + digits[i] + "]";
-
 			//outputText += "(" + digits[i+1] + "," + digits[i+2] + " or " + digits[i] + "," + digits[i-1] + ")";
 
 			if (printAnd){
 				outputText += " and ";
 			}
+
 		} else if ((len-i)%3==1){
+
 			if (i == len-1 && digits[i] != 0 && digits[i-1] == 0){ 
 				var re = /(, |and ) +?$/;
 				outputText = outputText.replace(re,"");
@@ -68,7 +72,9 @@ window.intToText = function () {
 				 outputText += " " + bigUnits[(len-i)-4];
 				 outputText += ", ";
 			}
+
 		} else if ((len-i)%3==2){
+
 			if (i == len-2 && digits[i] != 0 && digits[i-1] == 0){
 				var re = /(, |and ) +?$/;
 				outputText = outputText.replace(re,"");
