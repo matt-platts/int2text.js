@@ -9,14 +9,20 @@ window.intToText = function () {
 	var teens = Array("ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen");
 	var tens = Array("","ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety");
 	
-	var bigUnits = Array("thousand","","","million","","","billion","","","trillion","","","quadrillion","","","quintillion","","","sextillion","","","septillion","","","octillion","","","nonillion","","","decillion","","","undecillion","","","duodecillion","","","tredecillion","","","quattuordecillion","","","quindecillion","","","sexdecillion","","","septendecillion","","","octodecillion","","","novemdecillion","","","vigintillion","","","unvigintillion","","","dovigintillion","","","trevigintillion","","","quattuorvigintillion","","","quinvigintillion","","","sexvigintillion","","","septenvigintillion","","","octovigintillion","","","novemvigintillion","","","trigintillion","","","untrigintillion","","","dotrigintillion"); 
-	// below array to replace bigUnits below - need to fix the code to stop skipping blank entries and index properly
-	var bigUnits2 = Array("thousand","million","billion","trillion","quadrillion","quintillion","sextillion","septillion","octillion","nonillion","decillion","undecillion","duodecillion","tredecillion","quattuordecillion","quindecillion","sexdecillion","septendecillion","octodecillion","novemdecillion","vigintillion","unvigintillion","dovigintillion","trevigintillion","quattuorvigintillion","quinvigintillion","sexvigintillion","septenvigintillion","octovigintillion","novemvigintillion","trigintillion","untrigintillion","dotrigintillion"); 
+	var bigUnitData= Array("thousand","million","billion","trillion","quadrillion","quintillion","sextillion","septillion","octillion","nonillion","decillion","undecillion","duodecillion","tredecillion","quattuordecillion","quindecillion","sexdecillion","septendecillion","octodecillion","novemdecillion","vigintillion","unvigintillion","dovigintillion","trevigintillion","quattuorvigintillion","quinvigintillion","sexvigintillion","septenvigintillion","octovigintillion","novemvigintillion","trigintillion","untrigintillion","dotrigintillion"); 
+	// the below sets up a new array simply called bigUnits - with the values above positioned as per the digit indexes in the final number for easy lookup
+	var n = 0;
+	var bigUnits=Array();
+	for (i=0;i<bigUnitData.length;i++){
+		bigUnits[i]=bigUnitData[n]
+		n++;
+		i=i+2;
+	}
 
 	var outputText = '';
 	var numberInput = document.getElementById("numberInput").value.replace(/,/g,""); 
 	var minus; 
-	var re =/^\d+$/;
+	var re =/^-?\d+$/;
 	if (!numberInput.match(re)){
 		    document.getElementById("result").innerHTML = "Input is not a valid integer"; 
 		return;
